@@ -1,7 +1,11 @@
-#Inventory System
+#BSCIT-05-0836/2022
+#Inventory Management System
 def inventory_system():
+
+# Dictionary to store item names and their quantities
     stock = {}
-    
+
+# Function to display the main menu options
     def menu():
         print("\n...Inventory Management...")
         print("1. Add or Update Item")
@@ -10,7 +14,8 @@ def inventory_system():
         print("4. Quantity in Inventory")
         print("5. Exit")
         print("................................")
-
+        
+# Function to add a new item or update quantity of existing item
     def add_update_item():
         item_name = input("Enter item name:").strip()
         try:
@@ -18,6 +23,8 @@ def inventory_system():
             if count<0:
                 print("Quantity cannot be negative.")
                 return
+
+# If item exists, show updated message
             if item_name in stock:
                 print(f"{item_name} already exists. Update quantity from {stock[item_name]} to {count}.")
             else:
@@ -26,6 +33,7 @@ def inventory_system():
         except ValueError:
             print("Invalid quantity input. Please enter a number.")
             
+# Function to search for an item in the inventory            
     def lookup_item():
         name = input("Enter item name to search:").strip()
         if name in stock:
@@ -33,6 +41,7 @@ def inventory_system():
         else:
             print(f"{name} is not in the inventory.")
             
+# Function to list all items currently in the inventory            
     def list_all_items():
         if not stock:
             print("No items in inventory.")
@@ -41,10 +50,12 @@ def inventory_system():
             for item, qty in stock.items():
                 print(f"{item}: {qty} units")
                 
+# Function to calculate and display total number of units in inventory               
     def calculate_total():
         total_items = sum(stock.values())
         print(f"\nTotal number of units in inventory:{total_items}")
         
+# Main loop to keep showing menu and process user input        
     while True:
         menu()
         selection = input("Choose an option (1-5):").strip()
